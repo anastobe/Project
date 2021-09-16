@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -9,23 +9,33 @@ import {
   View,
   Image
 } from 'react-native';
-
+import Loader from './Components/Loader/Loader'
+import Auth from './Components/Auth/Auth'
 
 const App =()=>{
+  
+  const [state, setstate] = useState(true)
+  
+  useEffect(() => {
+   
+    setTimeout(() => {  
+      
+      setstate(!state)
+  
+    }, 1000);
+  
+  }, [])
 
+
+  
   return (
-    <View  style={styles.ImageContainer} >
-      <Image style={styles.ImageLoader} source={require('./assets/X-pod-01.png')} />
+    <View>
+     {state ? <Loader  />   : <Auth /> }
+     
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  ImageLoader: {
-    width: '100%',
-    height: 280,
-    
-  }
-});
+const styles = StyleSheet.create({});
 
 export default App;
